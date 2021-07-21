@@ -122,7 +122,6 @@ export default function ChatWindow() {
     React.useEffect(() => {
         // scroll to bottom after message changed
         if (messageListRef?.current) {
-            console.log({ zxc: messageListRef.current });
             messageListRef.current.scrollTop =
                 messageListRef.current.scrollHeight + 50;
         }
