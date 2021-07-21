@@ -86,15 +86,19 @@ export default function ChatWindow() {
     };
 
     const handleOnSubmit = () => {
-        addDocument("messages", {
-            text: inputValue,
-            uid,
-            photoURL,
-            roomId: selectedRoom.id,
-            displayName,
-        });
+        if (inputValue) {
+            addDocument("messages", {
+                text: inputValue,
+                uid,
+                photoURL,
+                roomId: selectedRoom.id,
+                displayName,
+            });
+        }
 
+        // Reset form input after submit
         form.resetFields(["message"]);
+        // setInputValue("");
 
         // focus to input again after submit
         if (inputRef?.current) {
@@ -118,6 +122,7 @@ export default function ChatWindow() {
     React.useEffect(() => {
         // scroll to bottom after message changed
         if (messageListRef?.current) {
+            console.log({ zxc: messageListRef.current });
             messageListRef.current.scrollTop =
                 messageListRef.current.scrollHeight + 50;
         }
@@ -197,6 +202,7 @@ export default function ChatWindow() {
                     message='Hãy chọn phòng'
                     type='info'
                     showIcon
+                    closable
                     style={{ margin: 5 }}
                 />
             )}
